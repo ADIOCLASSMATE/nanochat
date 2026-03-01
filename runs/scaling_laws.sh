@@ -15,7 +15,9 @@ WANDB_RUN="${WANDB_RUN:-scaling_${LABEL}}"
 EVAL_TOKENS=$((100 * 524288))  # ~100M tokens for final eval (default is ~10M)
 
 export OMP_NUM_THREADS=1
-export NANOCHAT_BASE_DIR="${NANOCHAT_BASE_DIR:-$HOME/.cache/nanochat}"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+export NANOCHAT_BASE_DIR="${NANOCHAT_BASE_DIR:-$(dirname "$SCRIPT_DIR")/public/project/nanochat}"
+export HF_HOME="${HF_HOME:-$(dirname "$SCRIPT_DIR")/public/.cache/huggingface}"
 source .venv/bin/activate
 
 RESULTS_DIR="$NANOCHAT_BASE_DIR/scaling_laws_results_${LABEL}"

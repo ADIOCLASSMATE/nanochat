@@ -6,7 +6,9 @@
 # Default series name is today's date (e.g., jan11)
 
 export OMP_NUM_THREADS=1
-export NANOCHAT_BASE_DIR="$HOME/.cache/nanochat"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+export NANOCHAT_BASE_DIR="$(dirname "$SCRIPT_DIR")/public/project/nanochat"
+export HF_HOME="$(dirname "$SCRIPT_DIR")/public/.cache/huggingface"
 mkdir -p $NANOCHAT_BASE_DIR
 
 # Setup (skip with SKIP_SETUP=1)
